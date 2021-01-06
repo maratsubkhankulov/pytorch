@@ -3,6 +3,7 @@
 #include <torch/csrc/jit/runtime/register_ops_utils.h>
 #include <torch/library.h>
 
+#include <c10/util/Optional.h>
 #include <algorithm>
 #include <bitset>
 #include <cctype>
@@ -21,7 +22,6 @@
 #include <unordered_set>
 #include <utility>
 #include <vector>
-#include "c10/util/Optional.h"
 
 namespace torch {
 namespace jit {
@@ -606,7 +606,7 @@ RegisterOperators reg(
          aliasAnalysisFromSchema()),
      OperatorGenerator(
          TORCH_SELECTIVE_SCHEMA(
-             "aten::slice.t(t[] l, int? start=0, int? end=9223372036854775807, int step=1) -> t[]"),
+             "aten::slice.t(t[] l, int? start=None, int? end=None, int step=1) -> t[]"),
          listSlice,
          aliasAnalysisFromSchema()),
      OperatorGenerator(
